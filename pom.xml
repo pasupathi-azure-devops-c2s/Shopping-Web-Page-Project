@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- General Information -->
+    <groupId>com.example</groupId>
+    <artifactId>Shopping-Web-Page-Project</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <!-- Repositories -->
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>apache-repo</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <!-- Dependencies -->
+    <dependencies>
+        <!-- Servlet API Dependency (required for Servlet-based apps) -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Other dependencies can be added here if needed -->
+    </dependencies>
+
+    <!-- Build Configuration -->
+    <build>
+        <plugins>
+            <!-- Tomcat 10 Maven Plugin for Deployment -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat10-maven-plugin</artifactId>
+                <version>3.0.0</version> <!-- You can specify another version if needed -->
+                <configuration>
+                    <!-- Tomcat Manager URL -->
+                    <url>http://localhost:8080/manager/text</url>
+
+                    <!-- Referencing Server credentials from settings.xml -->
+                    <server>TomcatServer</server> <!-- The ID should match the one in your settings.xml -->
+
+                    <!-- The context path for your web application in Tomcat -->
+                    <path>/Shopping-Web-Page-Project</path>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    
+
+</project>
