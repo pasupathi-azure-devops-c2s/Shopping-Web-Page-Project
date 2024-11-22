@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopping-web-page-deployment
+spec:
+  replicas: 3  # Number of pods to run
+  selector:
+    matchLabels:
+      app: shopping-web-page
+  template:
+    metadata:
+      labels:
+        app: shopping-web-page
+    spec:
+      containers:
+      - name: shopping-web-page
+        image: akscr01sample.azurecr.io/shooping-app:latest  # Replace with the image you pushed to Docker registry (e.g., Docker Hub, ACR)
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+        - name: JAVA_OPTS
+          value: "-Xmx1024m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shopping-web-page-service
+spec:
+  selector:
+    app: shopping-web-page
+  ports:
+    - protocol: TCP
+      port: 80        # Exposes port 80 within the cluster
+      targetPort: 8080 # Points to Tomcat's default port
+  type: LoadBalancer  # Creates an external IP for accessing the service
